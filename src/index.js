@@ -1,0 +1,7 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from "react-router-dom";
+import MyReads from "./MyReads";
+import './index.css'
+
+ReactDOM.render(<Router><MyReads /></Router>, document.getElementById('root'))

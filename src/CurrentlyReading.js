@@ -23,11 +23,12 @@ class CurrentlyReading extends Component {
     componentDidUpdate() {
         booksapi.getAll().then((currentShelfBooks) => {
             let booksOnThisShelf = currentShelfBooks.filter(book => book.shelf === "currentlyReading");
+            if (booksOnThisShelf.length != this.state.shelfBooks.length) {
+                this.setState({
 
-            this.setState({
-
-                shelfBooks: booksOnThisShelf
-            })
+                    shelfBooks: booksOnThisShelf
+                })
+            }
         })
     }
     render() {

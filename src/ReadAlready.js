@@ -29,10 +29,11 @@ class ReadAlready extends Component {
     componentDidUpdate() {
         booksapi.getAll().then((shelfBooks) => {
             let booksOnThisShelf = shelfBooks.filter(book => book.shelf === "read");
-            this.setState({
-
-                shelfBooks: booksOnThisShelf
-            })
+            if (booksOnThisShelf.length != this.state.shelfBooks.length) {
+                this.setState({
+                    shelfBooks: booksOnThisShelf
+                })
+            }
         })
     }
     render() {

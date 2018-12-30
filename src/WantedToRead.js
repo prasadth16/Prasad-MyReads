@@ -4,8 +4,8 @@ import './App.css'
 import PropTypes from "prop-types";
 
 class WantedToRead extends Component {
-    static propTyes={
-        needStateRefresh:PropTypes.func
+    static propTyes = {
+        needStateRefresh: PropTypes.func
     }
 
     state = {
@@ -28,11 +28,14 @@ class WantedToRead extends Component {
     componentDidUpdate() {
         booksapi.getAll().then((currentShelfBooks) => {
             let booksOnThisShelf = currentShelfBooks.filter(book => book.shelf === "wantToRead");
-            this.setState({
+            if (booksOnThisShelf.length != this.state.shelfBooks.length) {
+                this.setState({
 
-                shelfBooks: booksOnThisShelf
-            })
+                    shelfBooks: booksOnThisShelf
+                })
+            }
         })
+
     }
     render() {
         return (
